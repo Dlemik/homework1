@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | E-commerce product page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      padding: 20px 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+    }
+
+    .left-group {
+      display: flex;
+      align-items: center;
+      gap: 40px; 
+    }
+
+    nav a {
+      color: gray;
+      text-decoration: none;
+      font-size: 14px;
+      margin-right: 20px;
+    }
+
+    .end {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .end img {
+      width: 40px;
+      cursor: pointer;
+    }
+
+    .burger {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      background-color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .mobile-menu a {
+      display: block;
+      margin-bottom: 15px;
+      color: gray;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .main-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+      gap: 50px;
+    }
+
+    .left-side {
+      width: 50%;
+    }
+
+    .main-image {
+      width: 60%;
+      height: 80%;
+      border-radius: 15px;
+    }
+
+    .goods {
+      display: flex;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .goods img {
+      width: 75px;
+      height: 75px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .right-side {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .right-side h2 {
+      color: gray;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .right-side h1 {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    .right-side p {
+      font-size: 15px;
+      color: gray;
+      margin-bottom: 30px;
+    }
+
+    .price-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .price-section h3 {
+      font-size: 24px;
+    }
+
+    .black {
+      background-color: black;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .old-price {
+      color: gray;
+      text-decoration: line-through;
+      margin-bottom: 25px;
+    }
+
+    .carts {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cart-ones {
+      display: flex;
+      align-items: center;
+      background-color: #f6f8fd;
+      border-radius: 10px;
+      padding: 10px 15px;
+    }
+
+    .burger {
+      display: none;
+      font-size: 30px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cart-ones span {
+      padding: 0 10px;
+    }
+
+    .cart-ones button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+
+    .add-to-cart {
+      background-color: #ff7d1b;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 500px) {
+    body {
+      padding: 10px;
+    }
+    nav {
+      display: none;
+    }
+
+    .main-container {
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .left-side , .right-side {
+      width: 100%;
+    }
+
+    .main-image {
+      width: 100%;
+    }
+
+    .add-to-cart {
+      width: 100%;
+    }
+
+    .cart-ones {
+      width: 100%;
+    }
+
+    .price-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+
+    .carts {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  
+    .mobile-menu{
+      display: none;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+        
+    .burger{
+      display: block;
+    }
+
+    }
+
+
+
+  </style>
+</head>
+<body>
+<header>
+    <div class="left-group">
+      <button class="burger" onclick="toggleMenu()">☰</button>
+      <img src="logo.svg" alt="logo" style="width: 130px;">
+      <nav>
+        <a href="#">Collections</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+    <div class="end">
+      <img src="icon-cart.svg" alt="cart" onclick="toggleCart()" style="cursor:pointer;">
+      <img src="image-avatar.png" alt="avatar">
+    </div>
+  </header>  
+<nav class="mobile-menu" id="mobileMenu">
+    <a href="#">Collections</a>
+    <a href="#">Men</a>
+    <a href="#">Women</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+<div class="main-container">
+  <div class="left-side">
+    <img src="image-product-1.jpg" alt="" class="main-image">
+    <div class="goods">
+      <img src="image-product-1-thumbnail.jpg" alt="Image 1" onclick="changeMainImage('image-product-1.jpg')">
+      <img src="image-product-2-thumbnail.jpg" alt="Image 2" onclick="changeMainImage('image-product-2.jpg')">
+      <img src="image-product-3-thumbnail.jpg" alt="Image 3" onclick="changeMainImage('image-product-3.jpg')">
+      <img src="image-product-4-thumbnail.jpg" alt="Image 4" onclick="changeMainImage('image-product-4.jpg')">
+    </div>    
+  </div>
+  <div class="right-side">
+    <h2>Sneaker Company</h2>
+    <h1>Fall Limited Edition<br> Sneakers</h1>
+    <p> These low-profile sneakers are your perfect casual wear<br> companion. Featuring a 
+      durable rubber outer sole, they’l<br>l withstand everything the weather can offer.</p>
+      <div class="price-section">
+        <h3>$125.00</h3>
+        <span class="black">50%</span>
+      </div>
+      <div class="old-price">$250.00</div>
+      <div class="carts">
+      <div class="cart-ones">
+        <button onclick="changeSan(-1)">-</button>
+        <span id="quantity">0</span>
+        <button onclick="changeSan(1)">+</button>
+      </div>
+      <button class="add-to-cart" onclick="addToCart()">Add to cart</button>
+    </div>
+  </div>
+</div>
+<div id="cart-show" style="display:none; position:absolute; top:80px; right:40px; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1); padding:20px; border-radius:10px; width:250px;">
+  <h4>Cart</h4>
+  <div id="cart-content">
+    <p>Your cart is empty.</p>
+  </div>
+</div>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    menu.classList.toggle("active");
+  }
+  let quantity = 0;
+  function changeSan(num) {
+    quantity += num;
+    if (quantity < 0) quantity = 0;
+    document.getElementById("quantity").textContent = quantity;
+  }
+
+  function addToCart() {
+    const cartContent = document.getElementById("cart-content");
+    if (quantity === 0) {
+      cartContent.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+      let price = 125;
+      let total = price * quantity;
+      cartContent.innerHTML = `
+        <div style="display:flex; align-items:center; gap:10px;">
+          <img src="image-product-1-thumbnail.jpg" style="width:40px; border-radius:5px;">
+          <div>
+            <p style="font-size:14px;">Fall Limited Edition Sneakers</p>
+            <p style="font-size:14px;">$${price} x ${quantity} <strong>$${total}</strong></p>
+          </div>
+          <img src="icon-delete.svg" onclick="removeCart()" style="width:15px; cursor:pointer;">
+        </div>
+        <button style="margin-top:10px; background:#ff7d1b; color:white; border:none; padding:10px; border-radius:5px; width:100%;">Checkout</button>
+      `;
+    }
+  }
+
+
+  function removeCart() {
+    quantity = 0;
+    document.getElementById("quantity").textContent = "0";
+    document.getElementById("cart-content").innerHTML = "<p>Your cart is empty.</p>";
+  }
+
+
+  function toggleCart() {
+    const show = document.getElementById("cart-show");
+    if (show.style.display === "none") {
+        show.style.display = "block";
+    } else {
+        show.style.display = "none";
+    }
+}
+
+
+function changeMainImage(imageSrc) {
+  const mainImage = document.querySelector(".main-image");
+  mainImage.src = imageSrc;
+}
+
+</script>
+</body>
+</html>
